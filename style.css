@@ -1,9 +1,18 @@
 body {
     text-align: center;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #222;
+    color: white;
+    font-family: Arial, sans-serif;
 }
 
 #board {
     background-color: black;
+    border: 5px solid skyblue;
     border-top: 5px solid skyblue;
     border-left: 5px solid skyblue;
     border-right: 5px solid skyblue;

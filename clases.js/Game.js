@@ -137,7 +137,20 @@ class Game {
             this.gameOver = true;
             this.ctx.fillStyle = "red";
             this.ctx.font = "20px sans-serif";
-            this.ctx.fillText("Game Over: Press Space to Restart", 100, 250);
+            this.ctx.textAlign = "center"; // Centra el texto horizontalmente
+            this.ctx.textBaseline = "middle"; // Centra el texto verticalmente
+            const centerX = this.canvas.width / 2;
+            const centerY = this.canvas.height / 2;
+            this.ctx.fillText(
+                "Game Over", 
+                centerX, 
+                centerY - 15
+            );
+            this.ctx.fillText(
+                "Press Space to Restart or ESC for Menu", 
+                centerX, 
+                centerY + 15
+            );
         }
     }
 
@@ -212,10 +225,13 @@ class Game {
 
 }
 
-// Reinicia el juego al presionar 'Espacio'
+// Reinicia el juego al presionar 'Espacio' o vuelve al menú presionando 'ESC'
 window.addEventListener("keydown", (event) => {
     if (event.code === "Space") {
         window.location.reload(); // Recarga la página
+    }
+    if (event.code === "Escape") {
+        window.location.href = '/menu.html'; // Vuelve al menú
     }
 });
 
