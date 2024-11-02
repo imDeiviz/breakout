@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save Score - Breakout</title>
+    <link rel="stylesheet" href="menu/menu-style.css">
+    <link rel="stylesheet" href="menu/saveScore-style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>SAVE YOUR SCORE</h1>
+        <div class="score-container">
+            <h2>Your Score: <span id="finalScore"></span></h2>
+            <form id="scoreForm">
+                <input type="text" id="playerName" placeholder="Enter your name" required>
+                <button type="submit" id="saveButton">Save Score</button>
+            </form>
+        </div>
+        <button id="menuButton" onclick="location.href='menu.html'">Back to Menu</button>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const score = urlParams.get('score');
+            document.getElementById('finalScore').textContent = score;
+
+            document.getElementById('scoreForm').onsubmit = function(e) {
+                e.preventDefault();
+                const playerName = document.getElementById('playerName').value;
+                const finalScore = parseInt(score);
+
+                let scores = JSON.parse(localStorage.getItem('scores') || '[]');
+                scores.push({name: playerName, points: finalScore});
+                scores.sort((a, b) => b.points - a.points);
+                scores = scores.slice(0, 10);  // Keep only top 10 scores
+
+                localStorage.setItem('scores', JSON.stringify(scores));
+                window.location.href = 'menu.html';
+            };
+        };
+    </script>
+</body>
+</html>

@@ -12,10 +12,13 @@ class Game {
         this.powerUps = [];
         this.activePowerUps = {};
         this.balls = [this.ball]; // Array para manejar múltiples bolas
+        this.brokenBlocksCount = 0;
+        this.backgroundMusic = document.getElementById('backgroundMusic');
+        this.backgroundMusic.volume = 0.02;
+        this.backgroundMusic.play();
         this.createBlocks(); // Crea los bloques iniciales
         document.addEventListener("keydown", this.controls.bind(this));
         this.startGame(); // Inicia el juego
-        this.brokenBlocksCount = 0;
     }
 
     startGame() {
@@ -90,6 +93,27 @@ class Game {
                     ));
                 }
             }
+
+            // Verifica si el juego ha terminado
+            if (this.ball.y > this.canvas.height) {
+                this.gameOver = true;
+                this.ctx.fillStyle = "red";
+                this.ctx.font = "20px sans-serif";
+                this.ctx.textAlign = "center";
+                this.ctx.textBaseline = "middle";
+                const centerX = this.canvas.width / 2;
+                const centerY = this.canvas.height / 2;
+                this.ctx.fillText(
+                    "Game Over", 
+                    centerX, 
+                    centerY - 15
+                );
+                this.ctx.fillText(
+                    "Press Space to Save Score or ESC for Menu", 
+                    centerX, 
+                    centerY + 15
+                );
+            }
         });
 
         // Verifica si todos los bloques están rotos
@@ -131,27 +155,6 @@ class Game {
 
         // Mostrar power-ups activos
         this.drawActivePowerUps();
-
-        // Verifica si el juego ha terminado
-        if (this.ball.y > this.canvas.height) {
-            this.gameOver = true;
-            this.ctx.fillStyle = "red";
-            this.ctx.font = "20px sans-serif";
-            this.ctx.textAlign = "center"; // Centra el texto horizontalmente
-            this.ctx.textBaseline = "middle"; // Centra el texto verticalmente
-            const centerX = this.canvas.width / 2;
-            const centerY = this.canvas.height / 2;
-            this.ctx.fillText(
-                "Game Over", 
-                centerX, 
-                centerY - 15
-            );
-            this.ctx.fillText(
-                "Press Space to Restart or ESC for Menu", 
-                centerX, 
-                centerY + 15
-            );
-        }
     }
 
     checkCollisions() {
@@ -223,19 +226,25 @@ class Game {
         this.ctx.textAlign = "left";
     }
 
+    saveScore() {
+        // Redirige a una nueva página para guardar la puntuación
+        window.location.href = `/saveScore.html?score=${this.score}`;
+    }
+
 }
 
 // Reinicia el juego al presionar 'Espacio' o vuelve al menú presionando 'ESC'
 window.addEventListener("keydown", (event) => {
-    if (event.code === "Space") {
-        window.location.reload(); // Recarga la página
+    if (event.code === "Space" && game.gameOver) {
+        game.saveScore();
     }
     if (event.code === "Escape") {
-        window.location.href = '/menu.html'; // Vuelve al menú
+        window.location.href = '/menu.html';
     }
 });
 
 // Inicia el juego cuando la página se carga
+let game;
 window.onload = () => {
-    new Game();
+    game = new Game();
 };

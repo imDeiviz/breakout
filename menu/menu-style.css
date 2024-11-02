@@ -1,40 +1,105 @@
+/* Estilos base */
 body, html {
     height: 100%;
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
 }
 
+/* Imagen de fondo */
 body {
-    background-image: url('/images/fondo_menu.jpg'); /* Reemplaza con la ruta de tu imagen */
+    background-image: url('/images/fondo_menu.jpg'); /* Asegúrate de tener esta imagen */
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed; /* Esto evita que la imagen se desplace */
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    min-height: 100vh;
-    width: 100%;
+    background-attachment: fixed;
+    color: white;
 }
 
+/* Contenedor principal */
 .container {
-    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
+    min-height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
+/* Título */
+h1 {
+    font-size: 48px;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #fff;
+}
+
+/* Botón de inicio */
 #startButton {
-    padding: 15px 30px;
+    padding: 15px 40px;
     font-size: 24px;
+    margin: 20px;
     cursor: pointer;
     background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 5px;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 #startButton:hover {
     background-color: #45a049;
+    transform: scale(1.05);
+}
+
+/* Tabla de puntuaciones */
+.scores-container {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    max-width: 500px;
+    width: 90%;
+}
+
+h2 {
+    color: #4CAF50;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Animación para las filas de la tabla */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#scoresTable tr {
+    animation: fadeIn 0.5s ease forwards;
 }

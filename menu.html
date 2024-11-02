@@ -1,15 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Breakout - Menu</title>
-    <link rel="stylesheet" href="/menu/menu-style.css">
+    <title>Breakout - Main Menu</title>
+    <link rel="stylesheet" href="menu/menu-style.css">
 </head>
 <body>
     <div class="container">
-        <button id="startButton">Start</button>
+        <h1>Breakout BLITZ</h1>
+        <button id="startButton" onclick="location.href='index.html'">PLAY</button>
+        
+        <div class="scores-container">
+            <h2>High Scores</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Name</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody id="scoresTable"></tbody>
+            </table>
+        </div>
     </div>
-    <script src="/menu/menu.js"></script>
+
+    <script>
+        // Cargar puntuaciones al abrir la página
+        window.onload = function() {
+            // Obtener puntuaciones guardadas
+            let scores = JSON.parse(localStorage.getItem('scores') || '[]');
+            let table = document.getElementById('scoresTable');
+            
+            // Mostrar cada puntuación en la tabla con delay para animación
+            scores.forEach((score, index) => {
+                setTimeout(() => {
+                    let row = table.insertRow();
+                    row.style.animationDelay = `${index * 0.1}s`;
+                    row.insertCell(0).textContent = index + 1;
+                    row.insertCell(1).textContent = score.name;
+                    row.insertCell(2).textContent = score.points;
+                }, index * 100);
+            });
+        }
+    </script>
 </body>
 </html>

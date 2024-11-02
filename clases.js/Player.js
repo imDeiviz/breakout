@@ -14,7 +14,7 @@ class Player {
     }
 
     draw() {
-        this.ctx.fillStyle = "lightgreen";
+        this.ctx.fillStyle = "#4CAF50";
         this.ctx.fillRect(this.x, this.y, this.w, this.h); // Dibuja el jugador
     }
 }
