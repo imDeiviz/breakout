@@ -1,5 +1,5 @@
 body {
-    background-image: url('/images/fondo-score.avif') !important;
+    background-image: url('../images/fondo-score.avif') !important;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

@@ -8,7 +8,7 @@ body, html {
 
 /* Imagen de fondo */
 body {
-    background-image: url('/images/fondo_menu.jpg'); /* Asegúrate de tener esta imagen */
+    background-image: url('../images/fondo_menu.jpg'); /* Asegúrate de tener esta imagen */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
