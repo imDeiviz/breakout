@@ -1,8 +1,9 @@
 class Ball {
     constructor(ctx) {
-        this.size = 15; // Tamaño del cuadrado
-        this.x = 250; // Posición inicial en el eje X
-        this.y = 250; // Posición inicial en el eje Y
+        this.w = 15; // Tamaño del cuadrado
+        this.h = 15;
+        this.x = 242.5; // Posición inicial en el eje X
+        this.y = 242.5; // Posición inicial en el eje Y
         this.initialVelocityX = 4; // Velocidad inicial en el eje X
         this.initialVelocityY = -4; // Velocidad inicial en el eje Y
         this.velocityX = this.initialVelocityX; // Velocidad actual en el eje X
@@ -30,6 +31,6 @@ class Ball {
 
     draw() {
         this.ctx.fillStyle = "white"; // Establece el color de relleno a blanco
-        this.ctx.fillRect(this.x - this.size / 2, this.y - this.size / 2, this.size, this.size); // Dibuja un cuadrado
+        this.ctx.fillRect(this.x, this.y, this.w, this.h); // Dibuja un cuadrado
     }
 }
