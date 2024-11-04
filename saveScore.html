@@ -34,7 +34,7 @@
                 let scores = JSON.parse(localStorage.getItem('scores') || '[]');
                 scores.push({name: playerName, points: finalScore});
                 scores.sort((a, b) => b.points - a.points);
-                scores = scores.slice(0, 10);  // Keep only top 10 scores
+                scores = scores.slice(0, 10); 
 
                 localStorage.setItem('scores', JSON.stringify(scores));
                 window.location.href = 'menu.html';
